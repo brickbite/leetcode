@@ -27,7 +27,6 @@ var maxSubArray = function(nums) {
     for (let i = 0; i < nums.length; i++) {
         cur = Math.max(nums[i], cur + nums[i]);
         max = Math.max(max, cur);
-        console.log(`cur is: ${cur}; max is: ${max}`);
     }
     
     return max;
