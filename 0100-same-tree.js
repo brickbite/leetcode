@@ -48,40 +48,15 @@ Output: false
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    
-    if (p === null && q === null) {
+    if (p === null && q !== null || p !== null && q === null ) {
+        return false;
+    }
+    if (p === q || p.val === q.val && !p.left && !p.right && !q.left && !q.right) {
         return true;
-    } else if (p === null && q !== null) {
-        return false;
-    } else if (p !== null && q === null) {
-        return false;
     }
-    
-    let same = true;
-    
     if (p.val !== q.val) {
-        same = false;
+        return false;
     }
     
-    if (p.left !== null && q.left !== null) {
-        if (same !== false) {
-            same = isSameTree(p.left, q.left);
-        }
-    } else if (p.left === null && q.left === null) {
-        console.log(`left is null`);
-    } else {
-        same = false;
-    }
-    
-    if (p.right !== null && q.right !== null) {
-        if (same !== false) {
-            same = isSameTree(p.right, q.right);
-        }
-    } else if (p.right === null && q.right === null) {
-        console.log(`right is null`);
-    } else {
-        same = false;
-    }
-        
-    return same;
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
